@@ -1,0 +1,229 @@
+:root {
+  --hero-overlay: rgba(18, 18, 18, 0.65);
+  --primary-green: #1e8f5b;
+  --accent-gold: #f8d648;
+  --card-bg: rgba(26, 27, 30, 0.466);
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+  color: #f8f9fa;
+  background-color: #0f1516;
+}
+
+.hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  padding: 1.2rem 0 0rem;
+  overflow: hidden;
+}
+
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: var(--hero-overlay);
+  z-index: 1;
+}
+
+.hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+      180deg,
+      rgba(15, 21, 22, 0.05) 0%,
+      rgba(15, 21, 22, 0.9) 100%
+    ),
+    repeating-linear-gradient(
+      45deg,
+      #1c1c1c 0,
+      #1c1c1c 20px,
+      #252525 20px,
+      #252525 40px
+    );
+  opacity: 0.45;
+  z-index: 0;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+}
+
+.brand-logo {
+  margin-bottom: 2.5rem;
+}
+
+.brand-logo-img {
+  max-width: 140px;
+  width: 100%;
+  height: auto;
+}
+
+.hero h1 {
+  font-weight: 700;
+  font-size: 53px;
+  line-height: 1.1;
+  margin-bottom: 0.4rem;
+}
+
+.hero p.lead {
+  color: rgba(248, 249, 250, 0.82);
+  font-size: 17px;
+  max-width: 90%;
+  margin: 1.8rem auto 4.5rem;
+}
+
+.action-buttons .btn {
+  padding: 0.75rem 1.75rem;
+  border-radius: 10px;
+  font-weight: 600;
+}
+
+.btn-primary-custom {
+  background: var(--primary-green);
+  border: 1px solid transparent;
+  color: #fff;
+}
+
+.btn-outline-custom {
+  border: 1px solid rgba(248, 249, 250, 0.6);
+  color: #f8f9fa;
+  background: rgba(0, 0, 0, 0.3);
+}
+
+.testimonial-card {
+  background: var(--card-bg);
+  border-radius: 1rem;
+  padding: 1.75rem 1.5rem;
+  min-height: 220px;
+  backdrop-filter: blur(10px);
+  text-align: left;
+}
+.star-wrapper {
+  position: relative;
+  display: inline-block;
+  font-size: 0.91rem;
+  padding-bottom: 0.7rem;
+}
+
+.stars-bg i {
+  color: #ddd; /* empty star color */
+}
+
+.stars-fill {
+  position: absolute;
+  top: 0;
+  left: 0;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.stars-fill i {
+  color: var(--accent-gold); /* filled color */
+}
+
+.testimonial-card p {
+  font-size: 0.8rem;
+  color: rgba(248, 249, 250, 0.76);
+  margin-bottom: 1.25rem;
+}
+
+.testimonial-card .name {
+  font-weight: 600;
+  margin-bottom: 0.1rem;
+}
+
+.testimonial-card .title {
+  font-size: 0.85rem;
+  color: rgba(248, 249, 250, 0.6);
+}
+
+.stats-strip {
+  padding: 1.75rem 2rem;
+}
+
+.stats-row {
+  align-items: stretch;
+}
+
+.stats-col {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem 1rem;
+}
+
+.stats-item {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  width: 100%;
+}
+
+.stats-item .value {
+  font-size: 2.35rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+.stats-item .label {
+  font-size: 0.9rem;
+  color: rgba(248, 249, 250, 0.75);
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+}
+
+@media (min-width: 992px) {
+  .stats-row::after{
+    content: "";
+    position: absolute;
+    left: -100%;
+    right: -100%;  /* or wherever you want the horizontal line */
+    height: 1px;
+    background: rgba(255, 255, 255, 0.12);
+  }
+  .stats-col:not(:last-child)::after {
+    content: "";
+    position: absolute;
+    top: -20%;
+    bottom: -100%;
+    right: 0;
+    width: 1px;
+    background: rgba(255, 255, 255, 0.12);
+  }
+}
+
+@media (max-width: 991.98px) {
+  .hero {
+    padding-top: 5rem;
+  }
+
+  .testimonial-card {
+    min-height: auto;
+  }
+}
+
+@media (max-width: 575.98px) {
+  .hero {
+    min-height: 100vh;
+    padding-top: 4rem;
+  }
+
+  .stats-strip {
+    margin: 0 -0.75rem;
+    border-radius: 0.75rem;
+    padding: 1.25rem 1.5rem;
+  }
+
+  .stats-col {
+    padding: 0.75rem 0.5rem;
+  }
+}
+
