@@ -10,6 +10,9 @@
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
+    <video id="background-video" autoplay loop muted playsinline>
+      <source src="assets/videos/video.mp4" type="video/mp4">
+    </video>
     <main class="hero">
       <div class="hero-content container">
         <div class="row justify-content-center">
@@ -31,7 +34,7 @@
             <div
               class="action-buttons d-flex flex-wrap gap-3 justify-content-center mb-5"
             >
-              <a class="btn btn-primary-custom" href="#signin">Sign In Now</a>
+              <a class="btn btn-primary-custom" href="login.html">Sign In Now</a>
               <a class="btn btn-outline-custom" href="#contact">Contact Us</a>
             </div>
           </div>
@@ -182,6 +185,7 @@
     <script src="assets/bootstrap-5.3.8/js/bootstrap.bundle.min.js"></script>
     <script>
       document.addEventListener('DOMContentLoaded', function() {
+        // Star rating functionality
         const starWrappers = document.querySelectorAll('.star-wrapper');
         starWrappers.forEach(wrapper => {
           const ratingRaw = wrapper.dataset.rating;

@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>MTB eBank - Sign In</title>
+    <link rel="stylesheet" href="assets/bootstrap-5.3.8/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="assets/bootstrap-icons/bootstrap-icons.css">
+    <link rel="stylesheet" href="assets/fonts/fonts.css">
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body class="login-page">
+    <video id="background-video" autoplay loop muted playsinline>
+      <source src="assets/videos/video.mp4" type="video/mp4">
+    </video>
+    
+    <div class="login-container">
+      <!-- Left Column - Promotional Content -->
+      <div class="login-left">
+        <div class="login-left-content">
+          <div class="corporate-tag">CORPORATE BANKING</div>
+          <h1 class="login-promo-title">Your All-in-One Corporate Banking Solutions</h1>
+          <p class="login-promo-text">
+            Automate tedious tasks, improve employee engagement, and make data-driven decisions to elevate your business.
+          </p>
+          <button class="btn btn-contact">Contact Us</button>
+        </div>
+      </div>
+
+      <!-- Right Column - Login Form -->
+      <div class="login-right">
+        <div class="login-right-content">
+          <!-- Logo -->
+          <div class="login-logo">
+            <img src="assets/images/e-bank.png" alt="MTB Bank logo" class="login-logo-img">
+          </div>
+
+          <!-- Login Card -->
+          <div class="login-card">
+            <h2 class="login-title">Welcome Back to MTB eBank</h2>
+            <p class="login-subtitle">Sign In Into Your eBank Account</p>
+            
+            <form class="login-form">
+              <div class="form-group">
+                <label for="username" class="form-label">User Name</label>
+                <input 
+                  type="text" 
+                  id="username" 
+                  class="form-control" 
+                  placeholder="Enter your user name"
+                  required
+                />
+              </div>
+              
+              <div class="form-group">
+                <label for="password" class="form-label">Password</label>
+                <div class="password-input-wrapper">
+                  <input 
+                    type="password" 
+                    id="password" 
+                    class="form-control" 
+                    placeholder="Enter password"
+                    required
+                  />
+                  <button type="button" class="password-toggle" id="passwordToggle">
+                    <i class="bi bi-eye" id="eyeIcon"></i>
+                  </button>
+                </div>
+              </div>
+              
+              <div class="forgot-password">
+                <a href="#" class="forgot-link">Forgot Password?</a>
+              </div>
+              
+              <button type="submit" class="btn btn-signin">Sign In</button>
+            </form>
+            
+            <div class="login-footer-links">
+              <a href="#" class="footer-link">About Us</a>
+              <span class="footer-separator">•</span>
+              <a href="#" class="footer-link">FAQs</a>
+              <span class="footer-separator">•</span>
+              <a href="#" class="footer-link">Terms & Condition</a>
+            </div>
+            
+            <div class="login-copyright">
+              All Rights Reserved ©2025
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="assets/bootstrap-5.3.8/js/bootstrap.bundle.min.js"></script>
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        // Password toggle functionality
+        const passwordToggle = document.getElementById('passwordToggle');
+        const passwordInput = document.getElementById('password');
+        const eyeIcon = document.getElementById('eyeIcon');
+        
+        if (passwordToggle && passwordInput && eyeIcon) {
+          passwordToggle.addEventListener('click', function() {
+            const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+            passwordInput.setAttribute('type', type);
+            
+            if (type === 'password') {
+              eyeIcon.classList.remove('bi-eye-slash');
+              eyeIcon.classList.add('bi-eye');
+            } else {
+              eyeIcon.classList.remove('bi-eye');
+              eyeIcon.classList.add('bi-eye-slash');
+            }
+          });
+        }
+
+        // Form submission
+        const loginForm = document.querySelector('.login-form');
+        if (loginForm) {
+          loginForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            // Add your login logic here
+            console.log('Login form submitted');
+          });
+        }
+      });
+    </script>
+  </body>
+</html>
+
