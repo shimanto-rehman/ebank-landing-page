@@ -677,9 +677,22 @@ body {
   }
 
   .login-title {
-    font-size: 1.5rem;
+    font-size: 1.1rem;
   }
-
+  .corporate-tag{
+    font-size: 0.6rem;
+  }
+  .btn-contact,
+  .login-promo-text,
+  .login-subtitle,
+  .form-label,
+  .form-control::placeholder,
+  .forgot-link {
+    font-size: 0.8rem;
+  }
+  .footer-link{
+    font-size: 0.6rem;
+  }
   .login-logo-img {
     max-width: 140px;
   }
