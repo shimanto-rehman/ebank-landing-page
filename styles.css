@@ -337,6 +337,113 @@ body {
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
+/* iPhone Slider at Bottom */
+.iphone-slider-bottom {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  z-index: 2;
+}
+
+.iphone-slider-container {
+  width: 320px;
+  z-index: -1;
+  display: flex;
+  justify-content: center;
+}
+
+.iphone-slide {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  bottom: 0px;
+  width: 450px;
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.iphone-slide:first-child:not(.active) {
+  opacity: 0;
+}
+
+.iphone-slide.active {
+  opacity: 1;
+  z-index: 2;
+  pointer-events: auto;
+}
+
+.iphone-slide.active:not(:first-child) {
+  position: absolute;
+}
+
+.iphone-slide-img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Greenish Gradient Rectangle Overlay */
+.slider-overlay-rectangle {
+  width: 100%;
+  background: linear-gradient(
+    to top,
+    rgba(30, 143, 91, 0.7) 0%,
+    rgba(30, 143, 91, 0.5) 25%,
+    rgba(30, 143, 91, 0.3) 50%,
+    rgba(30, 143, 91, 0.15) 75%,
+    transparent 100%
+  );
+  padding: 2.5rem 0 1.5rem;
+  margin-top: -3rem;
+  position: relative;
+  z-index: 3;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  min-height: 120px;
+}
+
+/* Slider Dots */
+.slider-dots-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.75rem;
+  position: relative;
+  z-index: 4;
+}
+
+.slider-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.7);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: 2px solid rgba(255, 255, 255, 0.5);
+  position: relative;
+  z-index: 1;
+}
+
+.slider-dot:hover {
+  background: rgba(255, 255, 255, 0.9);
+  transform: scale(1.2);
+}
+
+.slider-dot.active {
+  width: 32px;
+  height: 10px;
+  border-radius: 5px;
+  background: rgba(255, 255, 255, 0.9);
+  border-color: rgba(255, 255, 255, 0.7);
+}
+
 /* Mobile Mockup */
 .mobile-mockup {
   margin-top: 3rem;

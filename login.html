@@ -25,6 +25,40 @@
           </p>
           <button class="btn btn-contact">Contact Us</button>
         </div>
+        
+        <!-- iPhone Slider at Bottom -->
+        <div class="iphone-slider-bottom">
+          <!-- Images Container -->
+          <div class="iphone-slider-container">
+            <div class="iphone-slide active">
+              <img src="assets/images/iphone-dummy.png" alt="iPhone" class="iphone-slide-img">
+            </div>
+            <div class="iphone-slide">
+              <img src="assets/images/iphone-dummy.png" class="iphone-slide-img">
+            </div>
+            <div class="iphone-slide">
+              <img src="assets/images/iphone-dummy.png" class="iphone-slide-img">
+            </div>
+            <div class="iphone-slide">
+              <img src="assets/images/iphone-dummy.png" class="iphone-slide-img">
+            </div>
+            <div class="iphone-slide">
+              <img src="assets/images/iphone-dummy.png" class="iphone-slide-img">
+            </div>
+          </div>
+          
+          <!-- Greenish Gradient Rectangle Overlay -->
+          <div class="slider-overlay-rectangle">
+            <!-- Slider Dots -->
+            <div class="slider-dots-wrapper">
+              <span class="slider-dot active" data-slide="0"></span>
+              <span class="slider-dot" data-slide="1"></span>
+              <span class="slider-dot" data-slide="2"></span>
+              <span class="slider-dot" data-slide="3"></span>
+              <span class="slider-dot" data-slide="4"></span>
+            </div>
+          </div>
+        </div>
       </div>
 
       <!-- Right Column - Login Form -->
@@ -122,6 +156,47 @@
             // Add your login logic here
             console.log('Login form submitted');
           });
+        }
+
+        // Slider functionality
+        const sliderDots = document.querySelectorAll('.slider-dot');
+        const slides = document.querySelectorAll('.iphone-slide');
+        let currentSlide = 0;
+        let slideInterval;
+
+        function showSlide(index) {
+          slides.forEach(slide => slide.classList.remove('active'));
+          sliderDots.forEach(dot => dot.classList.remove('active'));
+          
+          if (slides[index]) {
+            slides[index].classList.add('active');
+          }
+          if (sliderDots[index]) {
+            sliderDots[index].classList.add('active');
+          }
+          
+          currentSlide = index;
+        }
+
+        sliderDots.forEach((dot, index) => {
+          dot.addEventListener('click', function() {
+            showSlide(index);
+            resetAutoSlide();
+          });
+        });
+
+        function nextSlide() {
+          currentSlide = (currentSlide + 1) % slides.length;
+          showSlide(currentSlide);
+        }
+
+        function resetAutoSlide() {
+          clearInterval(slideInterval);
+          slideInterval = setInterval(nextSlide, 4000);
+        }
+
+        if (slides.length > 0) {
+          resetAutoSlide();
         }
       });
     </script>
