@@ -23,7 +23,7 @@
         </div>
         <nav class="sidebar-nav">
           <a href="#" class="nav-item active">
-            <i class="fa-regular fa-house"></i>
+            <i class="bi bi-house"></i>
             <span>Dashboard</span>
           </a>
           <a href="#" class="nav-item">
@@ -43,11 +43,11 @@
             <span>Collection</span>
           </a>
           <a href="#" class="nav-item">
-            <i class="fa-solid fa-people-group"></i>
+            <i class="bi bi-people"></i>
             <span>Beneficiary</span>
           </a>
           <a href="#" class="nav-item">
-            <i class="fa-regular fa-calendar-minus"></i>
+            <i class="bi bi-clipboard-data"></i>
             <span>Reports</span>
           </a>
           <a href="#" class="nav-item">
@@ -55,7 +55,7 @@
             <span>Configuration</span>
           </a>
           <a href="#" class="nav-item support-item">
-            <i class="bi bi-headset"></i>
+            <i class="fa-regular fa-comments"></i>
             <span>Support</span>
           </a>
         </nav>
@@ -69,8 +69,8 @@
             <div class="header-right">
               <div class="header-actions">
                 <div class="quick-menus-dropdown">
-                  <button class="btn-quick-menu" style="">
-                    <i class="fa-solid fa-qrcode"></i>
+                  <button class="btn-quick-menu">
+                    <i class="bi bi-grid"></i>
                     <select class="form-select-sm" style="border: none; background: transparent; padding: 0% !important;">
                       <option value="1">Quick Menus </option>
                       <option value="2">Quick Menus</option>
@@ -87,9 +87,6 @@
                 <button class="btn-notification">
                   <i class="fa-regular fa-bell"></i>
                   <span class="notification-badge">1</span>
-                </button>
-                <button class="btn-menu-toggle">
-                  <i class="bi bi-list"></i>
                 </button>
               </div>
               <div class="header-user">
@@ -122,11 +119,17 @@
               </div>
             </div>
           </div>
-          <div class="rtgs-notice">
-            <i class="bi bi-info-circle"></i>
-            <span style="font-weight: 600;">RTGS transactions approved before 3:50 PM will be processed on the same day, while those approved after 3:50 PM will be processed on the next working day after 10 AM.</span>
-            <button class="rtgs-arrow rtgs-arrow-left"><i class="fa-solid fa-angle-left"></i></button>
-            <button class="rtgs-arrow rtgs-arrow-right"><i class="fa-solid fa-angle-right"></i></i></button>
+          <div class="rtgs-notice-content">
+            <div class="rtgs-notice">
+              <i class="bi bi-info-circle"></i>
+              <div class="rtgs-messages-wrapper">
+                <span class="rtgs-message active" style="font-weight: 600;">RTGS transactions approved before 3:50 PM will be processed on the same day, while those approved after 3:50 PM will be processed on the next working day after 10 AM.</span>
+                <span class="rtgs-message" style="font-weight: 600;">Please ensure all transaction details are verified before submission to avoid processing delays.</span>
+                <span class="rtgs-message" style="font-weight: 600;">For urgent transactions, please contact our support team during business hours for assistance.</span>
+              </div>
+              <button class="rtgs-arrow rtgs-arrow-left" id="rtgsArrowLeft"><i class="fa-solid fa-angle-left"></i></button>
+              <button class="rtgs-arrow rtgs-arrow-right" id="rtgsArrowRight"><i class="fa-solid fa-angle-right"></i></button>
+            </div>
           </div>
         </header>
 
@@ -143,59 +146,138 @@
                 <select class="form-select form-select-sm">
                   <option>Transaction Account</option>
                 </select>
-                <button class="btn-collapse">
-                  <span>Collapse</span><i class="fa-solid fa-arrows-to-circle"></i>
+                <button class="btn-collapse" id="collapseBtn">
+                  <span class="collapse-text">Collapse</span><i class="fa-solid fa-arrows-to-circle collapse-icon"></i>
                 </button>
               </div>
             </div>
-            <div class="account-cards-row">
-              <div class="account-card">
-                <div class="account-card-header">
-                  <span class="account-type">Savings Account</span>
-                  <div class="account-arrow-circle">
-                    <i class="fa-solid fa-location-arrow"></i>
+            <div class="account-cards-wrapper">
+              <div class="account-cards-row" id="accountCardsRow">
+                <div class="account-card">
+                  <div class="account-card-header">
+                    <span class="account-type">Savings Account</span>
+                    <div class="account-arrow-circle">
+                      <i class="fa-solid fa-location-arrow"></i>
+                    </div>
                   </div>
+                  <div class="account-balance-wrapper">
+                    <div class="account-balance-large">
+                      <span class="balance-amount" data-original="80,000,000">••••••••</span> <span class="balance-currency">৳</span>
+                      <i class="fa-regular fa-eye-slash balance-toggle" style="font-size: 1rem; cursor: pointer;"></i>
+                    </div>
+                  </div>
+                  <div class="account-number-display">1301 0000 3752 6267</div>
                 </div>
-                <div class="account-balance-wrapper">
-                  <div class="account-balance-large">80,000,000 ৳</div>
+                <div class="account-card">
+                  <div class="account-card-header">
+                    <span class="account-type">Savings Account</span>
+                    <div class="account-arrow-circle">
+                      <i class="fa-solid fa-location-arrow"></i>
+                    </div>
+                  </div>
+                  <div class="account-balance-wrapper">
+                    <div class="account-balance-large">
+                      <span class="balance-amount" data-original="80,000,000">••••••••</span> <span class="balance-currency">৳</span>
+                      <i class="fa-regular fa-eye-slash balance-toggle" style="font-size: 1rem; cursor: pointer;"></i>
+                    </div>
+                  </div>
+                  <div class="account-number-display">1301 0000 3752 6268</div>
                 </div>
-                <div class="account-number-display">1301 0000 3752 6267</div>
+                <div class="account-card">
+                  <div class="account-card-header">
+                    <span class="account-type">Savings Account</span>
+                    <div class="account-arrow-circle">
+                      <i class="fa-solid fa-location-arrow"></i>
+                    </div>
+                  </div>
+                  <div class="account-balance-wrapper">
+                    <div class="account-balance-large">
+                      <span class="balance-amount" data-original="80,000,000">••••••••</span> <span class="balance-currency">৳</span>
+                      <i class="fa-regular fa-eye-slash balance-toggle" style="font-size: 1rem; cursor: pointer;"></i>
+                    </div>
+                  </div>
+                  <div class="account-number-display">1301 0000 3752 6269</div>
+                </div>
+                <div class="account-card">
+                  <div class="account-card-header">
+                    <span class="account-type">Savings Account</span>
+                    <div class="account-arrow-circle">
+                      <i class="fa-solid fa-location-arrow"></i>
+                    </div>
+                  </div>
+                  <div class="account-balance-wrapper">
+                    <div class="account-balance-large">
+                      <span class="balance-amount" data-original="80,000,000">••••••••</span> <span class="balance-currency">৳</span>
+                      <i class="fa-regular fa-eye-slash balance-toggle" style="font-size: 1rem; cursor: pointer;"></i>
+                    </div>
+                  </div>
+                  <div class="account-number-display">1301 0000 3752 6270</div>
+                </div>
+                <div class="account-card">
+                  <div class="account-card-header">
+                    <span class="account-type">Current Account</span>
+                    <div class="account-arrow-circle">
+                      <i class="fa-solid fa-location-arrow"></i>
+                    </div>
+                  </div>
+                  <div class="account-balance-wrapper">
+                    <div class="account-balance-large">
+                      <span class="balance-amount" data-original="50,000,000">••••••••</span> <span class="balance-currency">৳</span>
+                      <i class="fa-regular fa-eye-slash balance-toggle" style="font-size: 1rem; cursor: pointer;"></i>
+                    </div>
+                  </div>
+                  <div class="account-number-display">1301 0000 3752 6271</div>
+                </div>
+                <div class="account-card">
+                  <div class="account-card-header">
+                    <span class="account-type">Savings Account</span>
+                    <div class="account-arrow-circle">
+                      <i class="fa-solid fa-location-arrow"></i>
+                    </div>
+                  </div>
+                  <div class="account-balance-wrapper">
+                    <div class="account-balance-large">
+                      <span class="balance-amount" data-original="120,000,000">••••••••</span> <span class="balance-currency">৳</span>
+                      <i class="fa-regular fa-eye-slash balance-toggle" style="font-size: 1rem; cursor: pointer;"></i>
+                    </div>
+                  </div>
+                  <div class="account-number-display">1301 0000 3752 6272</div>
+                </div>
+                <div class="account-card">
+                  <div class="account-card-header">
+                    <span class="account-type">Fixed Deposit</span>
+                    <div class="account-arrow-circle">
+                      <i class="fa-solid fa-location-arrow"></i>
+                    </div>
+                  </div>
+                  <div class="account-balance-wrapper">
+                    <div class="account-balance-large">
+                      <span class="balance-amount" data-original="200,000,000">••••••••</span> <span class="balance-currency">৳</span>
+                      <i class="fa-regular fa-eye-slash balance-toggle" style="font-size: 1rem; cursor: pointer;"></i>
+                    </div>
+                  </div>
+                  <div class="account-number-display">1301 0000 3752 6273</div>
+                </div>
+                <div class="account-card">
+                  <div class="account-card-header">
+                    <span class="account-type">Savings Account</span>
+                    <div class="account-arrow-circle">
+                      <i class="fa-solid fa-location-arrow"></i>
+                    </div>
+                  </div>
+                  <div class="account-balance-wrapper">
+                    <div class="account-balance-large">
+                      <span class="balance-amount" data-original="90,000,000">••••••••</span> <span class="balance-currency">৳</span>
+                      <i class="fa-regular fa-eye-slash balance-toggle" style="font-size: 1rem; cursor: pointer;"></i>
+                    </div>
+                  </div>
+                  <div class="account-number-display">1301 0000 3752 6274</div>
+                </div>
               </div>
-              <div class="account-card">
-                <div class="account-card-header">
-                  <span class="account-type">Savings Account</span>
-                  <div class="account-arrow-circle">
-                    <i class="fa-solid fa-location-arrow"></i>
-                  </div>
+              <div class="account-cards-slider">
+                <div class="slider-track">
+                  <div class="slider-thumb" id="sliderThumb"></div>
                 </div>
-                <div class="account-balance-wrapper">
-                  <div class="account-balance-large">80,000,000 ৳</div>
-                </div>
-                <div class="account-number-display">1301 0000 3752 6267</div>
-              </div>
-              <div class="account-card">
-                <div class="account-card-header">
-                  <span class="account-type">Savings Account</span>
-                  <div class="account-arrow-circle">
-                    <i class="fa-solid fa-location-arrow"></i>
-                  </div>
-                </div>
-                <div class="account-balance-wrapper">
-                  <div class="account-balance-large">80,000,000 ৳</div>
-                </div>
-                <div class="account-number-display">1301 0000 3752 6267</div>
-              </div>
-              <div class="account-card">
-                <div class="account-card-header">
-                  <span class="account-type">Savings Account</span>
-                  <div class="account-arrow-circle">
-                    <i class="fa-solid fa-location-arrow"></i>
-                  </div>
-                </div>
-                <div class="account-balance-wrapper">
-                  <div class="account-balance-large">80,000,000 ৳</div>
-                </div>
-                <div class="account-number-display">1301 0000 3752 6267</div>
               </div>
             </div>
           </section>
@@ -206,8 +288,8 @@
               <div>
                 <h2 class="section-title">Account Insights</h2>
                 <div class="current-balance-masked">
-                  Current Balance: <span class="masked-balance">••••••••••</span>
-                  <i class="bi bi-eye"></i>
+                  Current Balance: <span class="balance-amount-insight" data-original="80,000,000">••••••••</span> <span class="balance-currency-insight">৳</span>
+                  <i class="fa-regular fa-eye-slash balance-toggle-insight" style="font-size: 0.8rem; cursor: pointer;"></i>
                 </div>
               </div>
               <div class="section-controls">
@@ -254,21 +336,24 @@
           <!-- Two Column Layout -->
           <div class="row g-4">
             <!-- Left Column -->
-            <div class="col-lg-8">
+            <div class="col-lg-5">
               <!-- Transaction Summary -->
-              <section class="dashboard-section">
-                <div class="section-header">
+              <section class="dashboard-section pie-chart-section">
+                <div class="section-header" style="margin-bottom: 0rem;">
                   <div>
                     <h2 class="section-title">Transaction Summary</h2>
                     <p class="section-subtitle">See your recent transactions with details summary</p>
                   </div>
                   <div class="section-actions">
-                    <button class="btn-download">
-                      <i class="bi bi-file-earmark-excel"></i> Download Excel
-                    </button>
-                    <button class="btn-download">
-                      <i class="bi bi-file-earmark-pdf"></i> Download PDF
-                    </button>
+                    <div class="dropdown-menu-container">
+                      <button class="btn-dropdown-trigger" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <i class="fa-solid fa-ellipsis-vertical"></i>
+                      </button>
+                      <ul class="dropdown-menu download-dropdown dropdown-menu-end">
+                        <li><a class="dropdown-item download-item" href="#"><i class="fa-solid fa-file-excel"></i> Download Excel</a></li>
+                        <li><a class="dropdown-item download-item" href="#"><i class="fa-solid fa-file-pdf"></i> Download PDF</a></li>
+                      </ul>
+                    </div>
                   </div>
                 </div>
                 <div class="transaction-summary-content">
@@ -329,63 +414,184 @@
                   </div>
                 </div>
               </section>
+            </div>
+            <!-- Right Column -->
+            <div class="col-lg-7">
+            <!-- Corporate Banking Solutions -->
+              <section class="dashboard-section corporate-banner">
+                  <div class="corporate-banner-content">
+                    <h3 class="corporate-title">Your All-in-One Corporate Banking Solutions</h3>
+                    <p class="corporate-text">Automate tedious tasks, improve employee engagement, and make data-driven decisions to elevate your business.</p>
+                    <button class="btn-contact-corporate">Contact Us</button>
+                  </div>
+                  <div class="corporate-mobile-mockup">
+                    <div class="mobile-app-preview">
+                      <div class="mobile-app-header">
+                        <div class="mobile-app-balance">
+                            <div class="mobile-balance-label">Available Balance</div>
+                            <div class="mobile-balance-amount">৳ 5,00,000.00</div>
+                        </div>
+                      </div>
+                      <div class="mobile-app-actions">
+                        <div class="mobile-action-item">
+                          <i class="bi bi-send"></i>
+                          <span>Transfer</span>
+                        </div>
+                        <div class="mobile-action-item">
+                          <i class="bi bi-receipt"></i>
+                          <span>Payment</span>
+                        </div>
+                        <div class="mobile-action-item">
+                          <i class="bi bi-phone"></i>
+                          <span>Recharge</span>
+                        </div>
+                        <div class="mobile-action-item">
+                          <i class="bi bi-truck"></i>
+                          <span>Pick & Drop</span>
+                        </div>
+                        <div class="mobile-action-item">
+                          <i class="bi bi-credit-card"></i>
+                          <span>My Cards</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+              </section>
+            </div>
+          </div>
 
+            <div class="row g-4">
+              <!-- Left Column -->
+              <div class="col-lg-12">
               <!-- Cost Forecasting -->
               <section class="dashboard-section">
                 <div class="section-header">
                   <div>
                     <h2 class="section-title">Cost Forecasting for June</h2>
-                    <p class="section-subtitle">We've given you a estimated cost plan based on your last 6 months transaction</p>
+                    <p class="section-subtitle">We've given you an estimated cost plan based on your last 6 months transaction</p>
                   </div>
-                </div>
-                <div class="forecast-total">
-                  Total Estimated Cost: <span class="forecast-amount">15,00,000 ৳</span>
+                  <div class="forecast-total">
+                    Total Estimated Cost: <span class="forecast-amount">15,00,000 ৳</span>
+                  </div>
                 </div>
                 <div class="bar-chart-container">
-                  <div class="bar-chart">
-                    <div class="bar-item">
-                      <div class="bar-label">Card</div>
-                      <div class="bar-wrapper">
-                        <div class="bar bar-purple" style="height: 26%"></div>
-                      </div>
-                      <div class="bar-value">20,800,937 ৳</div>
-                    </div>
-                    <div class="bar-item">
-                      <div class="bar-label">Challan</div>
-                      <div class="bar-wrapper">
-                        <div class="bar bar-blue" style="height: 11%"></div>
-                      </div>
-                      <div class="bar-value">90,566,000 ৳</div>
-                    </div>
-                    <div class="bar-item">
-                      <div class="bar-label">MTB to MTB</div>
-                      <div class="bar-wrapper">
-                        <div class="bar bar-red" style="height: 13%"></div>
-                      </div>
-                      <div class="bar-value">1,00,566,000 ৳</div>
-                    </div>
-                    <div class="bar-item">
-                      <div class="bar-label">Other Banks</div>
-                      <div class="bar-wrapper">
-                        <div class="bar bar-green" style="height: 74%"></div>
-                      </div>
-                      <div class="bar-value">5,89,356,890 ৳</div>
-                    </div>
-                    <div class="bar-item">
-                      <div class="bar-label">MFS</div>
-                      <div class="bar-wrapper">
-                        <div class="bar bar-red" style="height: 3%"></div>
-                      </div>
-                      <div class="bar-value">2,080,093 ৳</div>
-                    </div>
-                    <div class="bar-item">
-                      <div class="bar-label">Utility Bill</div>
-                      <div class="bar-wrapper">
-                        <div class="bar bar-purple" style="height: 1%"></div>
-                      </div>
-                      <div class="bar-value">7,89,356 ৳</div>
-                    </div>
-                  </div>
+                  <table class="bar-chart-table">
+                    <thead>
+                      <tr>
+                        <th class="y-axis-header"></th>
+                        <th class="bar-header">
+                          <div class="bar-item-header">
+                            <div class="bar-value-top">20,800,937 ৳</div>
+                            <div class="bar-wrapper-header">
+                              <div class="bar bar-purple" style="height: 26%"></div>
+                            </div>
+                            <div class="bar-label">Card</div>
+                          </div>
+                        </th>
+                        <th class="bar-header">
+                          <div class="bar-item-header">
+                            <div class="bar-value-top">90,566,000 ৳</div>
+                            <div class="bar-wrapper-header">
+                              <div class="bar bar-teal" style="height: 11%"></div>
+                            </div>
+                            <div class="bar-label">Challan</div>
+                          </div>
+                        </th>
+                        <th class="bar-header">
+                          <div class="bar-item-header">
+                            <div class="bar-wrapper-header">
+                              <div class="bar-value-top">1,00,566,000 ৳</div>
+                              <div class="bar bar-red" style="height: 14%"></div>
+                            </div>
+                            <div class="bar-label">MTB to MTB</div>
+                          </div>
+                        </th>
+                        <th class="bar-header">
+                          <div class="bar-item-header">
+                            <div class="bar-value-top">5,89,356,890 ৳</div>
+                            <div class="bar-wrapper-header">
+                              <div class="bar bar-green" style="height: 74%"></div>
+                            </div>
+                            <div class="bar-label">Other Banks</div>
+                          </div>
+                        </th>
+                        <th class="bar-header">
+                          <div class="bar-item-header">
+                            <div class="bar-value-top">2,080,093 ৳</div>
+                            <div class="bar-wrapper-header">
+                              <div class="bar bar-dark-pink" style="height: 3%"></div>
+                            </div>
+                            <div class="bar-label">MFS</div>
+                          </div>
+                        </th>
+                        <th class="bar-header">
+                          <div class="bar-item-header">
+                            <div class="bar-value-top">7,89,356 ৳</div>
+                            <div class="bar-wrapper-header">
+                              <div class="bar bar-slate-blue" style="height: 7%"></div>
+                            </div>
+                            <div class="bar-label">Utility Bill</div>
+                          </div>
+                        </th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td class="y-axis-label">8,00,000 ৳</td>
+                        <td class="grid-cell"></td>
+                        <td class="grid-cell"></td>
+                        <td class="grid-cell"></td>
+                        <td class="grid-cell"></td>
+                        <td class="grid-cell"></td>
+                        <td class="grid-cell"></td>
+                      </tr>
+                      <tr>
+                        <td class="y-axis-label">8,00,000 ৳</td>
+                        <td class="grid-cell"></td>
+                        <td class="grid-cell"></td>
+                        <td class="grid-cell"></td>
+                        <td class="grid-cell"></td>
+                        <td class="grid-cell"></td>
+                        <td class="grid-cell"></td>
+                      </tr>
+                      <tr>
+                        <td class="y-axis-label">7,00,000 ৳</td>
+                        <td class="grid-cell"></td>
+                        <td class="grid-cell"></td>
+                        <td class="grid-cell"></td>
+                        <td class="grid-cell"></td>
+                        <td class="grid-cell"></td>
+                        <td class="grid-cell"></td>
+                      </tr>
+                      <tr>
+                        <td class="y-axis-label">5,00,000 ৳</td>
+                        <td class="grid-cell"></td>
+                        <td class="grid-cell"></td>
+                        <td class="grid-cell"></td>
+                        <td class="grid-cell"></td>
+                        <td class="grid-cell"></td>
+                        <td class="grid-cell"></td>
+                      </tr>
+                      <tr>
+                        <td class="y-axis-label">4,00,000 ৳</td>
+                        <td class="grid-cell"></td>
+                        <td class="grid-cell"></td>
+                        <td class="grid-cell"></td>
+                        <td class="grid-cell"></td>
+                        <td class="grid-cell"></td>
+                        <td class="grid-cell"></td>
+                      </tr>
+                      <tr>
+                        <td class="y-axis-label">0</td>
+                        <td class="grid-cell"></td>
+                        <td class="grid-cell"></td>
+                        <td class="grid-cell"></td>
+                        <td class="grid-cell"></td>
+                        <td class="grid-cell"></td>
+                        <td class="grid-cell"></td>
+                      </tr>
+                    </tbody>
+                  </table>
                 </div>
               </section>
 
@@ -507,55 +713,12 @@
                 </div>
               </section>
             </div>
-
-            <!-- Right Column -->
-            <div class="col-lg-4">
-              <!-- Corporate Banking Solutions -->
-              <section class="dashboard-section corporate-banner">
-                <div class="corporate-banner-content">
-                  <h3 class="corporate-title">Your All-in-One Corporate Banking Solutions</h3>
-                  <p class="corporate-text">Automate tedious tasks, improve employee engagement, and make data-driven decisions to elevate your business.</p>
-                  <button class="btn-contact-corporate">Contact Us</button>
-                </div>
-                <div class="corporate-mobile-mockup">
-                  <div class="mobile-app-preview">
-                    <div class="mobile-app-header">
-                      <div class="mobile-app-balance">
-                        <div class="mobile-balance-label">Available Balance</div>
-                        <div class="mobile-balance-amount">৳ 5,00,000.00</div>
-                      </div>
-                    </div>
-                    <div class="mobile-app-actions">
-                      <div class="mobile-action-item">
-                        <i class="bi bi-send"></i>
-                        <span>Transfer</span>
-                      </div>
-                      <div class="mobile-action-item">
-                        <i class="bi bi-receipt"></i>
-                        <span>Payment</span>
-                      </div>
-                      <div class="mobile-action-item">
-                        <i class="bi bi-phone"></i>
-                        <span>Recharge</span>
-                      </div>
-                      <div class="mobile-action-item">
-                        <i class="bi bi-truck"></i>
-                        <span>Pick & Drop</span>
-                      </div>
-                      <div class="mobile-action-item">
-                        <i class="bi bi-credit-card"></i>
-                        <span>My Cards</span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </section>
-            </div>
           </div>
         </div>
       </main>
     </div>
 
     <script src="assets/bootstrap-5.3.8/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/js/main.js"></script>
   </body>
 </html>

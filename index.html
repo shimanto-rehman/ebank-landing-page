@@ -184,21 +184,7 @@
     </main>
 
     <script src="assets/bootstrap-5.3.8/js/bootstrap.bundle.min.js"></script>
-    <script>
-      document.addEventListener('DOMContentLoaded', function() {
-        // Star rating functionality
-        const starWrappers = document.querySelectorAll('.star-wrapper');
-        starWrappers.forEach(wrapper => {
-          const ratingRaw = wrapper.dataset.rating;
-          const ratingNum = Math.max(0, Math.min(5, parseFloat(ratingRaw)));
-          if (Number.isNaN(ratingNum)) return;
-          const widthPercent = (ratingNum / 5) * 100;
-          const fillEl = wrapper.querySelector('.stars-fill');
-          if (!fillEl) return;
-          fillEl.style.width = widthPercent + '%';
-        });
-      });
-    </script>
+    <script src="assets/js/main.js"></script>
   </body>
 </html>
 

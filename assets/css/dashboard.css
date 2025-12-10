@@ -117,6 +117,8 @@
   .nav-item.support-item {
     margin-top: auto;
     margin-bottom: 1rem;
+    position: absolute;
+    bottom: 0px;
   }
   
   /* Main Content Area */
@@ -129,7 +131,7 @@
   
   /* Dashboard Header with gradient */
   .dashboard-header {
-    padding: 1.5rem 2rem 0;
+    padding: 0rem 0rem 0;
     border-bottom: none;
   }
   
@@ -137,7 +139,9 @@
     display: flex;
     justify-content: end;
     align-items: center;
+    padding: 0.3rem 2rem 0.3rem;
     margin-bottom: 0;
+    background: #ffffff;
   }
   
   .header-left {
@@ -151,6 +155,8 @@
     align-items: center;
     font-size: 1.5rem;
     font-weight: 700;
+    border-radius: 17px;
+    background: #fff;
   }
   
   .logo-emtb {
@@ -163,7 +169,7 @@
   }
   .header-date-time-bar {
     background: transparent;
-    padding: 0.75rem 0;
+    padding: 0rem 2rem 0;
     margin: 0;
     margin-bottom: 1rem;
   }
@@ -173,22 +179,23 @@
     align-items: center;
     gap: 1rem;
     padding: 0;
+    margin-top: 1.5rem;
   }
   
   .date-display {
     font-size: 0.95rem;
     color: #495057;
     font-weight: 500;
-    margin: auto;
   }
   
   .time-display {
-    background: linear-gradient(135deg, #ff6b9d 0%, #c44569 100%);
-    color: #fff;
-    padding: 0.25rem 0.75rem;
+    background: transparent;
+    color: #c44569;
+    padding: 0.02rem 0.3rem;
     border-radius: 20px;
     font-size: 0.85rem;
     font-weight: 600;
+    BORDER: 0.1rem solid #c44569;
   }
   
   .header-right {
@@ -204,8 +211,7 @@
   }
   
   .btn-quick-menu,
-  .btn-notification,
-  .btn-menu-toggle {
+  .btn-notification{
     background: #fff;
     border: 1px solid #e9ecef;
     padding: 0.5rem 1rem;
@@ -220,8 +226,7 @@
   }
   
   .btn-quick-menu:hover,
-  .btn-notification:hover,
-  .btn-menu-toggle:hover {
+  .btn-notification:hover{
     background: #f8f9fa;
     border-color: var(--primary-green);
     color: var(--primary-green);
@@ -303,7 +308,11 @@
     color: #2c3e50;
     font-weight: 700;
   }
-  
+  .rtgs-notice-content {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
   .rtgs-notice {
     background: rgba(255, 255, 255, 0.8);
     padding: 0.75rem 1rem;
@@ -313,8 +322,8 @@
     gap: 0.75rem;
     font-size: 0.85rem;
     color: #495057;
-    margin-bottom: 1.5rem;
-    position: relative;
+    margin: auto auto;
+    width: 95%;
   }
   
   .rtgs-notice i.bi-info-circle {
@@ -322,8 +331,30 @@
     flex-shrink: 0;
   }
   
-  .rtgs-notice span {
+  .rtgs-messages-wrapper {
     flex: 1;
+    position: relative;
+    min-height: 1.5em;
+    overflow: hidden;
+  }
+  
+  .rtgs-message {
+    position: absolute;
+    width: 100%;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.5s ease, visibility 0.5s ease;
+    white-space: wrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  
+  .rtgs-message.active {
+    opacity: 1;
+    visibility: visible;
+    position: relative;
   }
   
   .rtgs-arrow {
@@ -395,6 +426,105 @@
   .section-actions {
     display: flex;
     gap: 0.75rem;
+    position: relative;
+  }
+  .dropdown-menu-end {
+    background: #ffffff !important;
+    border: 1px solid #919191b2 !important;
+    border-radius: 8px !important;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15) !important;
+  }
+  .dropdown-menu-container {
+    position: relative;
+  }
+  
+  .btn-dropdown-trigger {
+    background: #ffffff;
+    border: none;
+    padding: 0.5rem;
+    cursor: pointer;
+    color: #495057;
+    font-size: 1.1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 4px;
+    transition: background-color 0.2s ease;
+  }
+  
+  .btn-dropdown-trigger:hover {
+    background-color: rgba(255, 255, 255, 0.8);
+  }
+  
+  .download-dropdown {
+    min-width: 180px;
+    padding: 0.5rem 0;
+    margin-top: 2rem !important;
+    background: #e6e6e6 !important;
+    border: none;
+    border-radius: 8px;
+    list-style: none;
+    position: absolute;
+    right: 0 !important;
+    left: auto !important;
+    transform: translateX(0) !important;
+    top: 100%;
+    z-index: 1000;
+  }
+  
+  .download-dropdown[data-bs-popper] {
+    right: 0 !important;
+    left: auto !important;
+    transform: translateX(-100%) !important;
+  }
+  
+  .download-dropdown.show {
+    display: block;
+  }
+  
+  .dropdown-menu-container.show .download-dropdown {
+    display: block;
+  }
+  
+  .download-dropdown li {
+    margin: 0;
+    padding: 0;
+  }
+  
+  .download-item {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.75rem 1rem;
+    color: #2c3e50;
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 400;
+    border: none;
+    background: #ffffff;
+    width: 100%;
+    text-align: left;
+    cursor: pointer;
+  }
+  
+  .download-item:hover,
+  .download-item:focus {
+    background-color: #f5f5f5;
+    color: #2c3e50;
+    outline: none;
+  }
+  
+  .download-item:first-child {
+    border-radius: 8px 8px 0 0;
+  }
+  
+  .download-item:last-child {
+    border-radius: 0 0 8px 8px;
+  }
+  
+  .download-item i {
+    font-size: 0.95rem;
+    color: #495057;
   }
   
   .form-select-sm {
@@ -434,10 +564,22 @@
   }
   
   /* Account Cards */
+  .account-cards-wrapper {
+    position: relative;
+  }
+  
   .account-cards-row {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    display: flex;
     gap: 1rem;
+    overflow-x: hidden;
+    overflow-y: hidden;
+    scroll-behavior: smooth;
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE and Edge */
+  }
+  
+  .account-cards-row::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Opera */
   }
   
   .account-card {
@@ -446,6 +588,9 @@
     padding: 1.25rem;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     position: relative;
+    flex: 0 0 calc(25% - 0.75rem);
+    min-width: 250px;
+    max-width: 350px;
   }
   
   .account-card:hover {
@@ -457,7 +602,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 1rem;
+    margin-bottom: 2.9rem;
   }
   
   .account-type {
@@ -480,6 +625,7 @@
     color: #2e7d32;
     font-size: 0.9rem;
   }
+
   
   .account-balance-wrapper {
     display: flex;
@@ -492,6 +638,27 @@
     font-size: 1.5rem;
     font-weight: 700;
     color: #1b5e20;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  
+  .balance-amount {
+    display: inline-block;
+  }
+  
+  .balance-currency {
+    display: inline-block;
+  }
+  
+  .balance-toggle {
+    margin-left: 0.5rem;
+    color: #2e7d32;
+    transition: color 0.2s ease;
+  }
+  
+  .balance-toggle:hover {
+    color: #1b5e20;
   }
   
   .account-number-display {
@@ -501,19 +668,64 @@
     font-weight: 500;
   }
   
+  /* Account Cards Slider */
+  .account-cards-slider {
+    margin-top: 0.8rem;
+    padding: 0rem 0;
+  }
+  
+  .slider-track {
+    width: 100%;
+    height: 4.5px;
+    background: #e0e0e08e;
+    border-radius: 3px;
+    position: relative;
+    cursor: pointer;
+  }
+  
+  .slider-thumb {
+    position: absolute;
+    height: 100%;
+    background: #88888873;
+    border-radius: 3px;
+    cursor: grab;
+    min-width: 50px;
+    transition: background 0.2s ease;
+  }
+  
+  .slider-thumb:active {
+    cursor: grabbing;
+    background: #7c7c7c;
+  }
+  
   /* Account Insights */
   .current-balance-masked {
     display: flex;
     align-items: center;
     gap: 0.5rem;
     font-size: 0.9rem;
-    color: #6c757d;
+    color: #3e3e3e;
     margin-top: 0.5rem;
+    font-weight: 500;
   }
   
-  .masked-balance {
+  .balance-amount-insight {
     font-weight: 600;
     letter-spacing: 2px;
+  }
+  
+  .balance-currency-insight {
+    font-weight: 600;
+  }
+  
+  .balance-toggle-insight {
+    margin-left: 0.5rem;
+    color: #6c757d;
+    transition: color 0.2s ease;
+  }
+  
+  .balance-toggle-insight:hover {
+    color: #495057;
   }
   
   .insights-cards-row {
@@ -579,23 +791,24 @@
     font-size: 1.1rem;
   }
   
-  /* Transaction Summary */
-  .transaction-summary-content {
-    display: flex;
-    gap: 2rem;
-    align-items: flex-start;
+  .pie-chart-section {
+    height: 97%;
   }
   
   .pie-chart-container {
     flex-shrink: 0;
-    width: 200px;
+    width: 100%;
     height: 200px;
     position: relative;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    margin: 0rem 0.2rem 0.8rem 0rem;
   }
   
   .pie-chart-placeholder {
-    width: 100%;
-    height: 100%;
+    width: 150px;
+    height: 150px;
     border-radius: 50%;
     background: conic-gradient(
       #4caf50 0deg 120deg,
@@ -619,8 +832,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0.75rem;
-    background: #f8f9fa;
+    padding: 0rem 0.75rem;
     border-radius: 6px;
   }
   
@@ -629,7 +841,8 @@
     align-items: center;
     gap: 0.75rem;
     font-size: 0.9rem;
-    color: #495057;
+    font-weight: 550;
+    color: #2a2a2b;
   }
   
   .breakdown-color {
@@ -657,91 +870,189 @@
     text-decoration: none;
     font-size: 0.9rem;
     font-weight: 500;
-    margin-top: 0.5rem;
+    margin: 0.4rem 0.8rem;
     align-self: flex-start;
   }
   
   .view-more-link:hover {
     text-decoration: underline;
   }
-  
-  /* Cost Forecasting */
-  .forecast-total {
-    background: #f8f9fa;
-    padding: 1rem;
-    border-radius: 8px;
-    margin-bottom: 1.5rem;
-    font-size: 0.95rem;
-    color: #495057;
-  }
-  
-  .forecast-amount {
-    font-weight: 700;
-    color: #2c3e50;
-    font-size: 1.1rem;
-  }
-  
-  .bar-chart-container {
-    margin-top: 1rem;
-  }
-  
-  .bar-chart {
-    display: flex;
-    align-items: flex-end;
-    gap: 1rem;
-    height: 300px;
-    padding: 1rem 0;
-  }
-  
-  .bar-item {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    height: 100%;
-  }
-  
-  .bar-label {
-    font-size: 0.8rem;
-    color: #6c757d;
-    margin-bottom: 0.5rem;
-    text-align: center;
-    font-weight: 500;
-  }
-  
-  .bar-wrapper {
-    flex: 1;
-    width: 100%;
-    display: flex;
-    align-items: flex-end;
-    justify-content: center;
-    margin-bottom: 0.5rem;
-  }
-  
-  .bar {
-    width: 100%;
-    max-width: 60px;
-    border-radius: 4px 4px 0 0;
-    transition: all 0.3s ease;
-  }
-  
-  .bar:hover {
-    opacity: 0.8;
-  }
-  
-  .bar-purple { background: #9c27b0; }
-  .bar-blue { background: #2196f3; }
-  .bar-red { background: #f44336; }
-  .bar-green { background: #4caf50; }
-  
-  .bar-value {
-    font-size: 0.75rem;
-    color: #495057;
-    font-weight: 600;
-    text-align: center;
-    margin-top: 0.25rem;
-  }
-  
+
+/* ------------------------------------------------------------------------------------------------------- */
+/* Cost Forecasting */
+.forecast-total {
+  font-size: 0.95rem;
+  color: #495057;
+  text-align: right;
+}
+
+.forecast-amount {
+  font-weight: 700;
+  color: #dc3545;
+  font-size: 1.1rem;
+}
+
+.bar-chart-container {
+  margin-top: 1.5rem;
+  overflow-x: auto;
+  position: relative;
+}
+
+.bar-chart-table {
+  width: 100%;
+  border-collapse: collapse;
+  border-spacing: 0;
+  table-layout: fixed;
+}
+
+.bar-chart-table thead tr {
+  height: 350px;
+}
+
+.bar-chart-table thead {
+  vertical-align: bottom;
+}
+
+.bar-chart-table tbody {
+  vertical-align: top;
+}
+
+.y-axis-header {
+  width: 100px;
+  padding: 0;
+  text-align: right;
+  border: none;
+  vertical-align: bottom;
+}
+
+.bar-header {
+  padding: 0 0.5rem;
+  text-align: center;
+  border: none;
+  vertical-align: bottom;
+  position: relative;
+}
+
+.bar-item-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  height: 100%;
+  position: relative;
+}
+
+.bar-wrapper-header {
+  width: 100%;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  position: relative;
+  height: 300px;
+}
+
+.bar {
+  width: 30px;
+  border-radius: 10px 10px 0 0;
+  transition: all 0.3s ease;
+  position: relative;
+  min-height: 3px;
+  z-index: 1000;
+}
+
+.bar-value-top {
+  font-size: 0.75rem;
+  color: #fff;
+  font-weight: 600;
+  text-align: center;
+  background-color: #000;
+  padding: 0.35rem 0.65rem;
+  border-radius: 6px;
+  white-space: nowrap;
+  position: absolute;
+  bottom: calc(100% - 27px);
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.bar:hover {
+  opacity: 0.85;
+  cursor: pointer;
+}
+
+.bar-purple { background: #9c27b0; }
+.bar-teal { background: #00bcd4; }
+.bar-red { background: #f44336; }
+.bar-green { background: #4caf50; }
+.bar-dark-pink { background: #e91e63; }
+.bar-slate-blue { background: #607d8b; }
+
+.bar-label {
+  font-size: 0.85rem;
+  color: #6c757d;
+  text-align: center;
+  font-weight: 500;
+  padding: 0.75rem 0.5rem;
+  white-space: nowrap;
+}
+
+.y-axis-label {
+  font-size: 0.8rem;
+  color: #6c757d;
+  text-align: right;
+  padding-right: 1rem;
+  border-right: 1px solid #dee2e6;
+  height: 50px;
+  vertical-align: middle;
+  font-weight: 400;
+  width: 100px;
+}
+
+.grid-cell {
+  padding: 0;
+  border-right: 1px solid #e9ecef;
+  border-bottom: 1px solid #e9ecef;
+  height: 50px;
+  position: relative;
+  background-color: transparent;
+}
+
+.grid-cell:last-child {
+  border-right: 1px solid #e9ecef;
+}
+
+/* Position the thead over tbody */
+.bar-chart-table {
+  position: relative;
+}
+
+.bar-chart-table thead {
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.bar-chart-table thead th {
+  pointer-events: auto;
+}
+
+.bar-chart-table tbody {
+  position: absolute;
+  display: table-row-group;
+  top: 5px;
+}
+
+.bar-value {
+  font-size: 0.75rem;
+  color: #495057;
+  font-weight: 600;
+  text-align: center;
+  margin-top: 0.25rem;
+}
+
+/* ------------------------------------------------------------------------------------------------------- */
   /* Transactions Table */
   .search-box {
     position: relative;
@@ -1017,7 +1328,12 @@
   /* Responsive Design */
   @media (max-width: 1199.98px) {
     .account-cards-row {
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      flex-wrap: nowrap;
+    }
+    
+    .account-card {
+      flex: 0 0 calc(33.333% - 0.75rem);
+      min-width: 220px;
     }
   }
   
@@ -1124,7 +1440,12 @@
     }
   
     .account-cards-row {
-      grid-template-columns: 1fr;
+      flex-wrap: nowrap;
+    }
+    
+    .account-card {
+      flex: 0 0 calc(50% - 0.75rem);
+      min-width: 200px;
     }
   
     .insights-cards-row {
@@ -1211,8 +1532,7 @@
     }
   
     .btn-quick-menu,
-    .btn-notification,
-    .btn-menu-toggle {
+    .btn-notification {
       padding: 0.4rem 0.75rem;
       font-size: 0.8rem;
     }
