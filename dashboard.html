@@ -334,11 +334,11 @@
           </section>
 
           <!-- Two Column Layout -->
-          <div class="row g-4">
+          <div class="row g-4 row-equal-height">
             <!-- Left Column -->
             <div class="col-lg-5">
               <!-- Transaction Summary -->
-              <section class="dashboard-section pie-chart-section">
+              <section class="dashboard-section pie-chart-section" style="width: 100%;">
                 <div class="section-header" style="margin-bottom: 0rem;">
                   <div>
                     <h2 class="section-title">Transaction Summary</h2>
@@ -418,7 +418,7 @@
             <!-- Right Column -->
             <div class="col-lg-7">
             <!-- Corporate Banking Solutions -->
-              <section class="dashboard-section corporate-banner">
+              <section class="dashboard-section corporate-banner" style="width: 100%;">
                   <div class="corporate-banner-content">
                     <h3 class="corporate-title">Your All-in-One Corporate Banking Solutions</h3>
                     <p class="corporate-text">Automate tedious tasks, improve employee engagement, and make data-driven decisions to elevate your business.</p>
@@ -567,7 +567,7 @@
                   <div class="section-controls">
                     <div class="search-box">
                       <i class="bi bi-search"></i>
-                      <input type="text" placeholder="Q Search" class="search-input">
+                      <input type="text" id="transactionsSearch" placeholder="Q Search" class="search-input">
                     </div>
                     <select class="form-select form-select-sm">
                       <option>Salary Transaction</option>
@@ -581,7 +581,7 @@
                   </div>
                 </div>
                 <div class="table-responsive">
-                  <table class="table table-transactions">
+                  <table class="table table-transactions" id="transactionsTable">
                     <thead>
                       <tr>
                         <th><input type="checkbox"></th>
@@ -595,82 +595,27 @@
                         <th>ACTION</th>
                       </tr>
                     </thead>
-                    <tbody>
-                      <tr>
-                        <td><input type="checkbox"></td>
-                        <td>#54329</td>
-                        <td>InvestmentOverview_August2025.xlsx</td>
-                        <td>150,000 ৳</td>
-                        <td>22 Nov, 2027</td>
-                        <td><span class="status-badge status-approved">Approved</span></td>
-                        <td>Aiden Carter 3</td>
-                        <td>-</td>
-                        <td><i class="bi bi-three-dots-vertical"></i></td>
-                      </tr>
-                      <tr>
-                        <td><input type="checkbox"></td>
-                        <td>#54321</td>
-                        <td>WealthManagement_August2025.xlsx</td>
-                        <td>250,000 ৳</td>
-                        <td>30 Mar, 2028</td>
-                        <td><span class="status-badge status-pending">Pending</span></td>
-                        <td>Liam Thompson 3</td>
-                        <td>Ethan Carter 2</td>
-                        <td><i class="bi bi-three-dots-vertical"></i></td>
-                      </tr>
-                      <tr>
-                        <td><input type="checkbox"></td>
-                        <td>#54328</td>
-                        <td>InvestmentPortfolio_August2025.xlsx</td>
-                        <td>400,000 ৳</td>
-                        <td>3 Feb, 2026</td>
-                        <td><span class="status-badge status-disbursed">Fully Disbursed</span></td>
-                        <td>Oliver Scott 3</td>
-                        <td>-</td>
-                        <td><i class="bi bi-three-dots-vertical"></i></td>
-                      </tr>
-                      <tr>
-                        <td><input type="checkbox"></td>
-                        <td>#54323</td>
-                        <td>FinancialPortfolio_August2025.xlsx</td>
-                        <td>550,000 ৳</td>
-                        <td>14 Dec, 2026</td>
-                        <td><span class="status-badge status-rejected">Rejected</span></td>
-                        <td>Logan Brooks 3</td>
-                        <td>Mia Wilson</td>
-                        <td><i class="bi bi-three-dots-vertical"></i></td>
-                      </tr>
-                      <tr>
-                        <td><input type="checkbox"></td>
-                        <td>#54325</td>
-                        <td>InvestmentOverview_August2025.xlsx</td>
-                        <td>150,000 ৳</td>
-                        <td>22 Nov, 2027</td>
-                        <td><span class="status-badge status-approved">Approved</span></td>
-                        <td>Aiden Carter 3</td>
-                        <td>-</td>
-                        <td><i class="bi bi-three-dots-vertical"></i></td>
-                      </tr>
+                    <tbody id="transactionsBody">
+                      <!-- Rows will be rendered dynamically via JavaScript -->
                     </tbody>
                   </table>
                 </div>
                 <div class="table-pagination">
                   <div class="pagination-info">
-                    Page 1 of 10
+                    <span id="paginationSummary">Page 1 of 1</span>
+                    <select id="rowsPerPageSelect" class="form-select form-select-sm">
+                      <option value="10">Rows per page 10</option>
+                      <option value="25">Rows per page 25</option>
+                      <option value="50">Rows per page 50</option>
+                      <option value="100">Rows per page 100</option>
+                    </select>
                   </div>
                   <div class="pagination-controls">
-                    <select class="form-select form-select-sm">
-                      <option>Rows per page 10</option>
-                    </select>
-                    <button class="btn-pagination" disabled>< Prev</button>
-                    <div class="pagination-numbers">
-                      <span class="page-number active">1</span>
-                      <span class="page-number">2</span>
-                      <span class="page-number">3</span>
-                      <span class="page-dots">...</span>
-                      <span class="page-number">8</span>
+                    <button class="btn-pagination" id="paginationPrev">< Prev</button>
+                    <div class="pagination-numbers" id="paginationNumbers">
+                      <!-- Page numbers rendered dynamically -->
                     </div>
-                    <button class="btn-pagination">Next ></button>
+                    <button class="btn-pagination" id="paginationNext">Next ></button>
                   </div>
                 </div>
               </section>

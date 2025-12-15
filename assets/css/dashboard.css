@@ -429,8 +429,7 @@
     position: relative;
   }
   .dropdown-menu-end {
-    background: #ffffff !important;
-    border: 1px solid #919191b2 !important;
+    background-color: #ffffff !important;
     border-radius: 8px !important;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15) !important;
   }
@@ -460,8 +459,8 @@
     min-width: 180px;
     padding: 0.5rem 0;
     margin-top: 2rem !important;
-    background: #e6e6e6 !important;
-    border: none;
+    background-color: #ffffff !important;
+    border: 1px solid #e0e0e0;
     border-radius: 8px;
     list-style: none;
     position: absolute;
@@ -525,6 +524,24 @@
   .download-item i {
     font-size: 0.95rem;
     color: #495057;
+  }
+
+  /* Transaction action (3-dots) dropdown - force pure white background */
+  .txn-action-dropdown .dropdown-menu {
+    background-color: #ffffff !important;
+    border: none !important;
+    border-radius: 12px !important;
+    box-shadow: 0 8px 24px rgba(15, 23, 42, 0.25) !important;
+    padding: 0.5rem 0;
+  }
+
+  .txn-action-dropdown .dropdown-item {
+    background-color: #ffffff !important;
+  }
+
+  .txn-action-dropdown .dropdown-item:hover,
+  .txn-action-dropdown .dropdown-item:focus {
+    background-color: #f8f9fa !important;
   }
   
   .form-select-sm {
@@ -790,10 +807,7 @@
     color: #6c757d;
     font-size: 1.1rem;
   }
-  
-  .pie-chart-section {
-    height: 97%;
-  }
+
   
   .pie-chart-container {
     flex-shrink: 0;
@@ -876,6 +890,12 @@
   
   .view-more-link:hover {
     text-decoration: underline;
+  }
+
+  /* Equal height row for pie chart and corporate banner */
+  .row-equal-height > [class^="col-"],
+  .row-equal-height > [class*=" col-"] {
+    display: flex;
   }
 
 /* ------------------------------------------------------------------------------------------------------- */
@@ -1119,6 +1139,9 @@
   .pagination-info {
     font-size: 0.9rem;
     color: #6c757d;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
   }
   
   .pagination-controls {
