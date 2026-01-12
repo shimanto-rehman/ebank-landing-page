@@ -610,3 +610,22 @@ document.addEventListener('DOMContentLoaded', function() {
   renderTable();
 })();
 
+// Mobile Sidebar Toggle
+(function() {
+  const hamburgerBtn = document.querySelector('.btn-hamburger');
+  const sidebar = document.querySelector('.dashboard-sidebar');
+  const overlay = document.querySelector('.sidebar-overlay');
+  
+  if (hamburgerBtn && sidebar && overlay) {
+    hamburgerBtn.addEventListener('click', function() {
+      sidebar.classList.toggle('show');
+      overlay.classList.toggle('show');
+    });
+    
+    overlay.addEventListener('click', function() {
+      sidebar.classList.remove('show');
+      overlay.classList.remove('show');
+    });
+  }
+})();
+
