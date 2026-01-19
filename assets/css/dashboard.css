@@ -18,7 +18,7 @@
   .dashboard-sidebar {
     width: 76px;
     background: #DDF0EBB0;
-    padding: 1.5rem 0;
+    padding: 1.5rem 0 0 0;
     position: sticky;
     top: 0;
     height: 100vh;
@@ -26,7 +26,9 @@
     overflow-x: hidden;
     flex-shrink: 0;
     z-index: 100;
-    transition: transform 0.3s ease-in-out;
+    transition: width 0.25s ease, transform 0.3s ease-in-out;
+    display: flex;
+    flex-direction: column;
   }
 
   .dashboard-sidebar::before{
@@ -52,6 +54,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-shrink: 0;
   }
   
   .sidebar-logo-img {
@@ -64,6 +67,7 @@
     flex-direction: column;
     padding: 0 0;
     width: 100%;
+    flex: 1;
   }
   
   .nav-item {
@@ -78,6 +82,116 @@
     min-height: 70px;
     position: relative;
   }
+
+  /* Expanded sidebar (desktop hover / click) */
+  .dashboard-sidebar.sidebar-expanded {
+    width: 240px;
+  }
+
+  .dashboard-sidebar.sidebar-expanded .nav-item {
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 0.55rem 1rem;
+  }
+
+  .dashboard-sidebar.sidebar-expanded .nav-item svg {
+    margin-bottom: 0;
+    margin-right: 0.75rem;
+  }
+
+  .dashboard-sidebar.sidebar-expanded .nav-item span {
+    font-size: 0.8rem;
+    text-align: left;
+  }
+
+  /* Sub-nav inside expanded sidebar */
+  .nav-expand-btn {
+    display: none;
+    background: transparent;
+    border: none;
+    padding: 0;
+    margin-left: auto;
+    color: #adb5bd;
+    font-size: 0.85rem;
+    cursor: pointer;
+    width: 20px;
+    height: 20px;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .dashboard-sidebar.sidebar-expanded .nav-expand-btn {
+    display: inline-flex;
+  }
+
+  .nav-expand-btn i {
+    transition: transform 0.2s ease;
+  }
+
+  .nav-item.nav-open .nav-expand-btn i {
+    transform: rotate(90deg);
+  }
+
+  .sidebar-subnav {
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+    padding: 0;
+    margin: 0;
+    font-size: 0.75rem;
+    transform: translateY(-4px);
+    transition: max-height 0.3s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.25s ease, transform 0.25s ease, padding 0.25s ease;
+    background: rgba(255, 255, 255, 0.3);
+    border-left: 2px solid transparent;
+    margin-left: 0.5rem;
+  }
+
+  .dashboard-sidebar.sidebar-expanded .sidebar-subnav.subnav-open {
+    max-height: 800px;
+    opacity: 1;
+    transform: translateY(0);
+    padding-top: 0.25rem;
+    padding-bottom: 0.5rem;
+    border-left-color: rgba(43, 166, 109, 0.3);
+  }
+
+  .sidebar-subnav .subnav-item {
+    display: block;
+    padding: 0.5rem 0.75rem 0.5rem 1.5rem;
+    color: #495057;
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.2s ease;
+    position: relative;
+  }
+
+  .sidebar-subnav .subnav-item::before {
+    content: '';
+    position: absolute;
+    left: 0.5rem;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 4px;
+    height: 4px;
+    background: #6c757d;
+    border-radius: 50%;
+    transition: all 0.2s ease;
+  }
+
+  .sidebar-subnav .subnav-item:hover {
+    color: #1e7a4f;
+    background: rgba(43, 166, 109, 0.1);
+    padding-left: 1.75rem;
+  }
+
+  .sidebar-subnav .subnav-item:hover::before {
+    background: #1e7a4f;
+    width: 6px;
+    height: 6px;
+  }
+
   
   .nav-item svg {
     width: 20px;
@@ -122,10 +236,14 @@
   
   .support-item {
     margin-top: auto;
-    margin-bottom: 1rem;
-    position: absolute;
-    bottom: 0px;
+    margin-bottom: 0;
+    position: sticky;
+    bottom: 0;
     width: 100%;
+    background: #DDF0EBB0;
+    z-index: 10;
+    flex-shrink: 0;
+    padding-bottom: 1rem;
   }
   
   /* Sidebar Overlay */
@@ -382,6 +500,38 @@
   .user-avatar-header i {
     font-size: 2.5rem;
     color: var(--primary-green);
+  }
+
+  /* Mobile user inside right sidebar */
+  .sidebar-mobile-user {
+    padding: 1rem 0.5rem;
+    justify-content: center;
+    flex-shrink: 0;
+    margin-bottom: 0.5rem;
+  }
+
+  .sidebar-mobile-user-btn {
+    background: transparent;
+    border: none;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.25rem;
+    color: #2c3e50;
+    width: 100%;
+  }
+
+  .sidebar-mobile-user-name {
+    font-size: 0.75rem;
+    font-weight: 600;
+  }
+
+  .sidebar-mobile-user-menu {
+    right: 100%;
+    left: auto;
+    transform: none;
+    z-index: 2000;
   }
   
   .date-time-display{
@@ -1470,6 +1620,66 @@
     .dashboard-sidebar .sidebar-logo {
       display: none;
     }
+
+    /* Mobile: Allow submenu expansion without sidebar-expanded class */
+    .dashboard-sidebar .sidebar-subnav.subnav-open {
+      max-height: 800px;
+      opacity: 1;
+      transform: translateY(0);
+      padding-top: 0.25rem;
+      padding-bottom: 0.5rem;
+      border-left-color: rgba(43, 166, 109, 0.3);
+    }
+
+    /* Mobile: Show expand button even in collapsed state */
+    .dashboard-sidebar .nav-expand-btn {
+      display: inline-flex !important;
+      align-items: center;
+      justify-content: center;
+      width: 20px;
+      height: 20px;
+    }
+
+    /* Mobile: Adjust submenu styling for collapsed sidebar */
+    .dashboard-sidebar .sidebar-subnav {
+      margin-left: 0.25rem;
+      padding-left: 0;
+    }
+
+    .dashboard-sidebar .sidebar-subnav .subnav-item {
+      padding: 0.4rem 0.5rem 0.4rem 1.25rem;
+      font-size: 0.7rem;
+    }
+
+    .dashboard-sidebar .sidebar-subnav .subnav-item::before {
+      left: 0.25rem;
+    }
+
+    /* Mobile: Ensure sidebar uses flexbox layout */
+    .dashboard-sidebar {
+      display: flex !important;
+      flex-direction: column !important;
+    }
+
+    /* Mobile: Ensure support stays at bottom */
+    .dashboard-sidebar .support-item {
+      margin-top: auto;
+      position: sticky;
+      bottom: 0;
+      background: #ddf0eb;
+      z-index: 10;
+    }
+
+    /* Mobile: Ensure mobile user doesn't conflict */
+    .dashboard-sidebar .sidebar-mobile-user {
+      flex-shrink: 0;
+      margin-top: auto;
+      order: 1;
+    }
+
+    .dashboard-sidebar .support-item {
+      order: 2;
+    }
     .sidebar-overlay {
       display: none;
       position: fixed;
@@ -1560,7 +1770,24 @@
       flex: 0 0 calc(50% - 0.75rem);
       min-width: 200px;
     }
-  
+
+    /* Mobile: allow sub-nav to expand even without sidebar-expanded */
+    .dashboard-sidebar .sidebar-subnav.subnav-open {
+      max-height: 300px;
+      opacity: 1;
+      transform: translateY(0);
+      padding-top: 0.25rem;
+      padding-bottom: 0.5rem;
+    }
+
+    /* Ensure mobile user dropdown opens to the left and above everything */
+    .sidebar-mobile-user-menu {
+      right: 100%;
+      left: auto;
+      transform: translate(-180px, 30px) !important;
+      z-index: 2000;
+    }
+
     .insights-cards-row {
       grid-template-columns: repeat(2, 1fr);
     }

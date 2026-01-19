@@ -620,11 +620,99 @@ document.addEventListener('DOMContentLoaded', function() {
     hamburgerBtn.addEventListener('click', function() {
       sidebar.classList.toggle('show');
       overlay.classList.toggle('show');
+
+      // In mobile view, always keep sidebar in expanded mode when visible
+      const isMobile = window.matchMedia('(max-width: 768px)').matches;
+      if (isMobile) {
+        if (sidebar.classList.contains('show')) {
+          sidebar.classList.add('sidebar-expanded');
+        } else {
+          sidebar.classList.remove('sidebar-expanded');
+        }
+      }
     });
     
     overlay.addEventListener('click', function() {
       sidebar.classList.remove('show');
+      sidebar.classList.remove('sidebar-expanded');
       overlay.classList.remove('show');
+    });
+  }
+
+  // Sidebar expand on hover (desktop) / click (mobile)
+  if (sidebar) {
+    const mq = window.matchMedia('(min-width: 769px)');
+
+    function isDesktop() {
+      return mq.matches;
+    }
+
+    // Function to auto-open active nav-item's submenu
+    function openActiveSubmenu() {
+      const activeNavItem = sidebar.querySelector('.nav-item.active.nav-has-children');
+      if (activeNavItem) {
+        const subId = activeNavItem.getAttribute('data-subnav-id');
+        if (subId) {
+          const subNav = document.getElementById(subId);
+          if (subNav) {
+            activeNavItem.classList.add('nav-open');
+            subNav.classList.add('subnav-open');
+          }
+        }
+      }
+    }
+
+    // Desktop: Expand on hover
+    sidebar.addEventListener('mouseenter', function() {
+      if (!isDesktop()) return;
+      sidebar.classList.add('sidebar-expanded');
+      // Auto-open active submenu
+      setTimeout(openActiveSubmenu, 100);
+    });
+
+    sidebar.addEventListener('mouseleave', function() {
+      if (!isDesktop()) return;
+      sidebar.classList.remove('sidebar-expanded');
+
+      // Close all subnavs when collapsing
+      sidebar.querySelectorAll('.nav-item.nav-open').forEach(item => {
+        item.classList.remove('nav-open');
+      });
+      sidebar.querySelectorAll('.sidebar-subnav.subnav-open').forEach(sub => {
+        sub.classList.remove('subnav-open');
+      });
+    });
+
+    // Mobile: no hover-based or click-to-expand behavior;
+    // sidebar is always opened in expanded state when visible (handled above).
+
+    // Sub-nav toggle buttons
+    sidebar.addEventListener('click', function(event) {
+      const btn = event.target.closest('.nav-expand-btn');
+      if (!btn) return;
+      event.preventDefault();
+      event.stopPropagation();
+
+      const navItem = btn.closest('.nav-item');
+      const subId = navItem ? navItem.getAttribute('data-subnav-id') : null;
+      if (!subId) return;
+
+      const subNav = document.getElementById(subId);
+      if (!subNav) return;
+
+      // On mobile, also expand sidebar if not already expanded
+      if (!isDesktop() && sidebar.classList.contains('show')) {
+        sidebar.classList.add('sidebar-expanded');
+      }
+
+      const isOpen = navItem.classList.contains('nav-open');
+      if (isOpen) {
+        navItem.classList.remove('nav-open');
+        subNav.classList.remove('subnav-open');
+      } else {
+        navItem.classList.add('nav-open');
+        subNav.classList.add('subnav-open');
+      }
     });
   }
 })();
