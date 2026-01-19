@@ -622,7 +622,8 @@
     min-width: 120px;
   }
 
-  .txn-action-dropdown .dropdown-item {
+  .txn-action-dropdown .dropdown-item,
+  .dropdown-item{
     background-color: #ffffff !important;
     color: #2c3e50;
     padding: 0.5rem 1rem;
