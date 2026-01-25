@@ -3,12 +3,13 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>MTB eBank - Sidebar & Header</title>
+    <title>MTB eBank - Create Payment File</title>
     <link rel="stylesheet" href="assets/bootstrap-5.3.8/css/bootstrap.min.css"/>
     <link rel="stylesheet" href="assets/bootstrap-icons/bootstrap-icons.css">
     <link rel="stylesheet" href="assets/fonts/fonts.css">
     <link rel="stylesheet" href="assets/css/styles.css" />
     <link rel="stylesheet" href="assets/css/dashboard.css" />
+    <link rel="stylesheet" href="assets/css/create-payment.css" />
     <link rel="stylesheet" href="assets/fontawesome/css/all.min.css">
   </head>
   <body class="dashboard-page">
@@ -20,7 +21,7 @@
           <img src="assets/images/e-bank.png" alt="MTB Bank" class="sidebar-logo-img">
         </div>
         <nav class="sidebar-nav">
-          <a href="dashboard.html" class="nav-item active nav-has-children" data-subnav-id="nav-dashboard-sub">
+          <a href="dashboard.html" class="nav-item nav-has-children" data-subnav-id="nav-dashboard-sub">
             <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M8.33301 15L11.6663 15" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
               <path d="M1.95982 11.0125C1.66563 9.09817 1.51854 8.141 1.88046 7.29245C2.24238 6.4439 3.04535 5.86333 4.65127 4.70219L5.85115 3.83464C7.8489 2.39019 8.84778 1.66797 10.0003 1.66797C11.1529 1.66797 12.1517 2.39019 14.1495 3.83464L15.3494 4.70219C16.9553 5.86333 17.7583 6.4439 18.1202 7.29245C18.4821 8.141 18.335 9.09817 18.0408 11.0125L17.79 12.645C17.3729 15.3587 17.1644 16.7156 16.1912 17.5251C15.2179 18.3346 13.795 18.3346 10.9493 18.3346H9.05131C6.2056 18.3346 4.78275 18.3346 3.80949 17.5251C2.83623 16.7156 2.62772 15.3587 2.21068 12.645L1.95982 11.0125Z" stroke="white" stroke-width="1.5" stroke-linejoin="round"/>
@@ -35,7 +36,7 @@
             <a href="#" class="subnav-item">Analytics</a>
             <a href="#" class="subnav-item">Statistics</a>
           </div>
-          <a href="payment.html" class="nav-item nav-has-children" data-subnav-id="nav-payment-sub">
+          <a href="payment.html" class="nav-item active nav-has-children" data-subnav-id="nav-payment-sub">
             <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M5.83366 5.55973C4.94539 5.55973 4.10006 5.4603 3.33366 5.2809C2.53368 5.09364 1.66699 5.66972 1.66699 6.50845V15.6826C1.66699 16.3562 1.66699 16.6931 1.82876 17.0404C1.92102 17.2385 2.13113 17.508 2.29948 17.6441C2.59465 17.8828 2.84099 17.9405 3.33366 18.0558C4.10006 18.2352 4.94539 18.3346 5.83366 18.3346C7.43122 18.3346 8.88988 18.013 10.0003 17.483C11.1108 16.9529 12.5694 16.6313 14.167 16.6313C15.0553 16.6313 15.9006 16.7307 16.667 16.9101C17.467 17.0974 18.3337 16.5213 18.3337 15.6826V6.50846C18.3337 5.83481 18.3337 5.49799 18.1719 5.15065C18.0796 4.95254 17.8695 4.68306 17.7012 4.54692C16.667 3.70023 15.0003 4.5365 15.0003 4.5365" stroke="#141414" stroke-width="1.5" stroke-linecap="round"/>
               <path d="M12.0837 11.2513C12.0837 12.4019 11.1509 13.3346 10.0003 13.3346C8.84973 13.3346 7.91699 12.4019 7.91699 11.2513C7.91699 10.1007 8.84973 9.16797 10.0003 9.16797C11.1509 9.16797 12.0837 10.1007 12.0837 11.2513Z" stroke="#141414" stroke-width="1.5"/>
@@ -49,7 +50,7 @@
             </button>
           </a>
           <div class="sidebar-subnav" id="nav-payment-sub">
-            <a href="create-payment.html" class="subnav-item">Create Payment File</a>
+            <a href="create-payment.html" class="subnav-item active">Create Payment File</a>
             <a href="#" class="subnav-item">Utility Bills</a>
             <a href="#" class="subnav-item">Standing Orders</a>
           </div>
@@ -258,6 +259,137 @@
             </div>
           </div>
         </header>
+
+        <!-- Create Payment Content -->
+        <div class="create-payment-container">
+          <!-- Page Title and Next Button -->
+          <div class="create-payment-header">
+            <h1 class="create-payment-title">Create Payment File</h1>
+            <button type="button" class="btn btn-header-next" id="headerNextBtn" disabled>Next</button>
+          </div>
+
+          <!-- Progress Tracker -->
+          <div class="progress-tracker">
+            <div class="progress-step active">
+              <div class="step-circle">1</div>
+              <div class="step-label">STEP 1: Upload File</div>
+            </div>
+            <div class="progress-line active"></div>
+            <div class="progress-step">
+              <div class="step-circle">2</div>
+              <div class="step-label">STEP 2: File Details</div>
+            </div>
+            <div class="progress-line"></div>
+            <div class="progress-step">
+              <div class="step-circle">3</div>
+              <div class="step-label">STEP 3: Review</div>
+            </div>
+            <div class="progress-line"></div>
+            <div class="progress-step">
+              <div class="step-circle">4</div>
+              <div class="step-label">STEP 4: Assign Signatory</div>
+            </div>
+          </div>
+
+          <!-- Main Content Area -->
+          <div class="create-payment-content">
+            <!-- Left Section - File Upload -->
+            <div class="upload-section">
+              <h2 class="section-title">Upload The File Below</h2>
+              <p class="section-subtitle">Please upload your desired file here to start the file creation process</p>
+              
+              <!-- File Drop Zone -->
+              <div class="file-drop-zone" id="fileDropZone">
+                <div class="drop-zone-content">
+                  <i class="bi bi-file-earmark-excel-fill excel-icon"></i>
+                  <p class="drop-zone-text">
+                    Drag and drop your file here or browse to upload.<br>
+                    Only MS Excel (97-2003) files (*.xls, *.xlsx) are supported, with a maximum file size of 5 MB
+                  </p>
+                  <button type="button" class="btn btn-browse" id="browseBtn">Browse File</button>
+                  <input type="file" id="fileInput" accept=".xls,.xlsx" style="display: none;">
+                </div>
+              </div>
+
+              <!-- Uploaded Files List -->
+              <div class="uploaded-files" id="uploadedFiles">
+                <div class="uploaded-file-item">
+                  <div class="file-info">
+                    <i class="bi bi-file-earmark-excel-fill file-icon"></i>
+                    <div class="file-details">
+                      <div class="file-name">Dashboard prototype FINAL.fig</div>
+                      <div class="file-size">4.2 MB</div>
+                    </div>
+                  </div>
+                  <div class="file-progress">
+                    <div class="progress-bar">
+                      <div class="progress-fill" style="width: 80%"></div>
+                    </div>
+                    <span class="progress-text">80%</span>
+                  </div>
+                  <button type="button" class="btn-delete-file">
+                    <i class="bi bi-trash"></i>
+                  </button>
+                </div>
+                <div class="uploaded-file-item">
+                  <div class="file-info">
+                    <i class="bi bi-file-earmark-excel-fill file-icon"></i>
+                    <div class="file-details">
+                      <div class="file-name">Dashboard prototype FINAL.fig</div>
+                      <div class="file-size">4.2 MB</div>
+                    </div>
+                  </div>
+                  <div class="file-status">
+                    <i class="bi bi-check-circle-fill text-success"></i>
+                    <span>Uploaded</span>
+                  </div>
+                  <button type="button" class="btn-delete-file">
+                    <i class="bi bi-trash"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Right Section - Instructions -->
+            <div class="instructions-section">
+              <h2 class="section-title">Instructions</h2>
+              <p class="instruction-text">Please upload your desired file here to start the file creation process</p>
+              
+              <!-- File Specification -->
+              <div class="instruction-block">
+                <h3 class="instruction-subtitle">File Specification</h3>
+                <p class="instruction-desc">The rows listed below are to be included in the file</p>
+                <div class="spec-list">
+                  <div class="spec-item">Reason</div>
+                  <div class="spec-item">Sender Account No</div>
+                  <div class="spec-item">Receiving Bank Routing Number</div>
+                  <div class="spec-item">Beneficiary Bank Account Number</div>
+                  <div class="spec-item">Account Type</div>
+                  <div class="spec-item">Amount</div>
+                  <div class="spec-item">Receiver ID</div>
+                  <div class="spec-item">Receiver Name</div>
+                  <div class="spec-item">Remarks</div>
+                </div>
+              </div>
+
+              <!-- File Type -->
+              <div class="instruction-block">
+                <h3 class="instruction-subtitle">File Type</h3>
+                <p class="instruction-desc">MS Excel (97-2003) (.xls) .txt, "I" separator</p>
+              </div>
+
+              <!-- Sample File -->
+              <div class="instruction-block">
+                <h3 class="instruction-subtitle">Sample File</h3>
+                <p class="instruction-desc">Start with our template by downloading it and adding all the necessary data needed</p>
+                <button type="button" class="btn btn-download-sample">
+                  <i class="bi bi-download"></i> Download Sample
+                </button>
+              </div>
+            </div>
+          </div>
+
+        </div>
       </main>
     </div>
 
@@ -265,5 +397,180 @@
     <script src="assets/bootstrap-5.3.8/js/bootstrap.bundle.min.js"></script>
     <!-- Custom JS -->
     <script src="assets/js/main.js"></script>
+    <!-- Create Payment JS -->
+    <script>
+      (function() {
+        const fileInput = document.getElementById('fileInput');
+        const browseBtn = document.getElementById('browseBtn');
+        const fileDropZone = document.getElementById('fileDropZone');
+        const uploadedFiles = document.getElementById('uploadedFiles');
+        const nextBtn = document.getElementById('nextBtn');
+
+        // Browse button click
+        if (browseBtn && fileInput) {
+          browseBtn.addEventListener('click', function() {
+            fileInput.click();
+          });
+        }
+
+        // File input change
+        if (fileInput) {
+          fileInput.addEventListener('change', function(e) {
+            handleFiles(e.target.files);
+          });
+        }
+
+        // Drag and drop functionality
+        if (fileDropZone) {
+          fileDropZone.addEventListener('dragover', function(e) {
+            e.preventDefault();
+            fileDropZone.classList.add('dragover');
+          });
+
+          fileDropZone.addEventListener('dragleave', function() {
+            fileDropZone.classList.remove('dragover');
+          });
+
+          fileDropZone.addEventListener('drop', function(e) {
+            e.preventDefault();
+            fileDropZone.classList.remove('dragover');
+            handleFiles(e.dataTransfer.files);
+          });
+
+          fileDropZone.addEventListener('click', function() {
+            if (fileInput) {
+              fileInput.click();
+            }
+          });
+        }
+
+        // Update next button state
+        function updateNextButtons() {
+          const hasFiles = uploadedFiles && uploadedFiles.children.length > 0;
+          const headerNextBtn = document.getElementById('headerNextBtn');
+          if (headerNextBtn) {
+            headerNextBtn.disabled = !hasFiles;
+          }
+        }
+
+        // Handle file upload
+        function handleFiles(files) {
+          if (!files || files.length === 0) return;
+
+          Array.from(files).forEach(file => {
+            // Validate file type
+            const validExtensions = ['.xls', '.xlsx'];
+            const fileExtension = '.' + file.name.split('.').pop().toLowerCase();
+            
+            if (!validExtensions.includes(fileExtension)) {
+              alert('Please upload only MS Excel files (.xls, .xlsx)');
+              return;
+            }
+
+            // Validate file size (5 MB)
+            if (file.size > 5 * 1024 * 1024) {
+              alert('File size must be less than 5 MB');
+              return;
+            }
+
+            // Create file item
+            createFileItem(file);
+          });
+
+          // Update button states
+          updateNextButtons();
+        }
+
+        // Create file item in the list
+        function createFileItem(file) {
+          const fileItem = document.createElement('div');
+          fileItem.className = 'uploaded-file-item';
+          
+          const fileSize = (file.size / (1024 * 1024)).toFixed(1) + ' MB';
+          
+          fileItem.innerHTML = `
+            <div class="file-info">
+              <i class="bi bi-file-earmark-excel-fill file-icon"></i>
+              <div class="file-details">
+                <div class="file-name">${file.name}</div>
+                <div class="file-size">${fileSize}</div>
+              </div>
+            </div>
+            <div class="file-progress">
+              <div class="progress-bar">
+                <div class="progress-fill" style="width: 0%"></div>
+              </div>
+              <span class="progress-text">0%</span>
+            </div>
+            <button type="button" class="btn-delete-file">
+              <i class="bi bi-trash"></i>
+            </button>
+          `;
+
+          // Simulate upload progress
+          const progressFill = fileItem.querySelector('.progress-fill');
+          const progressText = fileItem.querySelector('.progress-text');
+          let progress = 0;
+
+          const uploadInterval = setInterval(() => {
+            progress += 10;
+            if (progress <= 100) {
+              progressFill.style.width = progress + '%';
+              progressText.textContent = progress + '%';
+            } else {
+              clearInterval(uploadInterval);
+              // Replace progress with success status
+              const fileProgress = fileItem.querySelector('.file-progress');
+              fileProgress.innerHTML = `
+                <div class="file-status">
+                  <i class="bi bi-check-circle-fill text-success"></i>
+                  <span>Uploaded</span>
+                </div>
+              `;
+            }
+          }, 200);
+
+          // Delete file functionality
+          const deleteBtn = fileItem.querySelector('.btn-delete-file');
+          deleteBtn.addEventListener('click', function() {
+            fileItem.remove();
+            // Update button states
+            updateNextButtons();
+          });
+
+          if (uploadedFiles) {
+            uploadedFiles.appendChild(fileItem);
+          }
+        }
+
+        // Delete existing file items
+        document.querySelectorAll('.btn-delete-file').forEach(btn => {
+          btn.addEventListener('click', function() {
+            const fileItem = this.closest('.uploaded-file-item');
+            if (fileItem) {
+              fileItem.remove();
+              // Update button states
+              updateNextButtons();
+            }
+          });
+        });
+
+        // Next button click
+        const headerNextBtn = document.getElementById('headerNextBtn');
+        
+        function handleNextClick() {
+          // Navigate to next step (File Details)
+          // You can implement navigation logic here
+          console.log('Navigate to File Details step');
+        }
+
+        if (headerNextBtn) {
+          headerNextBtn.addEventListener('click', handleNextClick);
+        }
+
+        // Initial button state
+        updateNextButtons();
+      })();
+    </script>
   </body>
 </html>
