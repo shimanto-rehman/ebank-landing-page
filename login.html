@@ -71,11 +71,11 @@
           </div>
 
           <!-- Login Card -->
-          <div class="login-card">
+          <div class="login-card" id="loginCard">
             <h2 class="login-title">Welcome Back to MTB eBank</h2>
             <p class="login-subtitle">Sign In Into Your eBank Account</p>
             
-            <form class="login-form">
+            <form class="login-form" id="loginForm">
               <div class="form-group">
                 <label for="username" class="form-label">User Name</label>
                 <input 
@@ -122,6 +122,46 @@
               All Rights Reserved ©2025
             </div>
           </div>
+
+          <!-- OTP Card (Initially Hidden) -->
+          <div class="login-card otp-card" id="otpCard" style="display: none;">
+            <h2 class="login-title">Enter OTP</h2>
+            <p class="login-subtitle">We have sent an OTP to your registered email/mobile number</p>
+            
+            <form class="login-form" id="otpForm">
+              <div class="form-group">
+                <label for="otp" class="form-label">Enter OTP</label>
+                <input 
+                  type="text" 
+                  id="otp" 
+                  class="form-control" 
+                  placeholder="Enter 6-digit OTP"
+                  maxlength="6"
+                  pattern="[0-9]{6}"
+                  required
+                />
+              </div>
+              
+              <div class="otp-resend">
+                <span class="otp-timer">Resend OTP in <span id="otpTimer">60</span>s</span>
+                <a href="#" class="resend-link" id="resendOtp" style="display: none;">Resend OTP</a>
+              </div>
+              
+              <button type="submit" class="btn btn-signin">Verify OTP</button>
+            </form>
+            
+            <div class="login-footer-links">
+              <a href="#" class="footer-link">About Us</a>
+              <span class="footer-separator">•</span>
+              <a href="#" class="footer-link">FAQs</a>
+              <span class="footer-separator">•</span>
+              <a href="#" class="footer-link">Terms & Condition</a>
+            </div>
+            
+            <div class="login-copyright">
+              All Rights Reserved ©2025
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -149,13 +189,81 @@
           });
         }
 
-        // Form submission
-        const loginForm = document.querySelector('.login-form');
+        // Form submission - Show OTP Card
+        const loginForm = document.getElementById('loginForm');
+        const loginCard = document.getElementById('loginCard');
+        const otpCard = document.getElementById('otpCard');
+        
         if (loginForm) {
           loginForm.addEventListener('submit', function(e) {
             e.preventDefault();
-            // Add your login logic here
-            console.log('Login form submitted');
+            
+            // Hide login card and show OTP card
+            if (loginCard && otpCard) {
+              loginCard.style.display = 'none';
+              otpCard.style.display = 'block';
+              
+              // Focus on OTP input
+              const otpInput = document.getElementById('otp');
+              if (otpInput) {
+                setTimeout(() => otpInput.focus(), 100);
+              }
+              
+              // Start OTP timer
+              startOtpTimer();
+            }
+          });
+        }
+
+        // OTP Form submission - Navigate to Dashboard
+        const otpForm = document.getElementById('otpForm');
+        if (otpForm) {
+          otpForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const otpInput = document.getElementById('otp');
+            const otpValue = otpInput ? otpInput.value.trim() : '';
+            
+            // Basic validation
+            if (otpValue.length === 6 && /^\d+$/.test(otpValue)) {
+              // Navigate to dashboard
+              window.location.href = 'dashboard.html';
+            } else {
+              alert('Please enter a valid 6-digit OTP');
+            }
+          });
+        }
+
+        // OTP Timer functionality
+        function startOtpTimer() {
+          const timerElement = document.getElementById('otpTimer');
+          const resendLink = document.getElementById('resendOtp');
+          
+          if (!timerElement || !resendLink) return;
+          
+          let timeLeft = 60;
+          resendLink.style.display = 'none';
+          
+          const timer = setInterval(function() {
+            timeLeft--;
+            timerElement.textContent = timeLeft;
+            
+            if (timeLeft <= 0) {
+              clearInterval(timer);
+              timerElement.textContent = '0';
+              resendLink.style.display = 'inline';
+            }
+          }, 1000);
+        }
+
+        // Resend OTP functionality
+        const resendOtp = document.getElementById('resendOtp');
+        if (resendOtp) {
+          resendOtp.addEventListener('click', function(e) {
+            e.preventDefault();
+            startOtpTimer();
+            // Add your resend OTP logic here
+            console.log('Resending OTP...');
           });
         }
 
