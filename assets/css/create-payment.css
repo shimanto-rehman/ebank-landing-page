@@ -50,26 +50,46 @@
   align-items: center;
   justify-content: space-between;
   margin-bottom: 3rem;
-  padding: 0 1rem;
-  max-width: 1000px;
+  padding: 16px 32px 16px 32px;
   margin-left: auto;
   margin-right: auto;
+  background: #F5F5F5;
+  border-radius: 12px;
 }
 
 .progress-step {
   display: flex;
   flex-direction: column;
-  align-items: center;
   flex: 1;
   position: relative;
+  align-items: flex-start;
+}
+
+.progress-step:not(:last-child)::after {
+  content: '';
+  position: absolute;
+  top: 14px;
+  left: calc(28px + 0.5rem);
+  right: 0.5rem;
+  height: 2px;
+  background: #e9ecef;
+  z-index: 0;
+  transition: background 0.3s ease;
+}
+
+.progress-step.active:not(:last-child)::after {
+  background: #009875;
+}
+
+.progress-step.active ~ .progress-step:not(:last-child)::after {
+  background: #009875;
 }
 
 .step-circle {
-  width: 40px;
-  height: 40px;
+  width: 28px;
+  height: 28px;
   border-radius: 50%;
-  background: #e9ecef;
-  color: #6c757d;
+  border: 2px solid #6c757d44;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -77,36 +97,28 @@
   font-size: 0.875rem;
   margin-bottom: 0.5rem;
   transition: all 0.3s ease;
+  position: relative;
+  z-index: 1;
 }
 
 .progress-step.active .step-circle {
-  background: #2BA66D;
-  color: #fff;
+  border: 2px solid #009875;
+  color: #009875;
 }
 
 .step-label {
-  font-size: 0.875rem;
+  font-size: 0.8rem;
   color: #6c757d;
-  text-align: center;
   font-weight: 500;
+  text-align: left;
 }
 
-.progress-step.active .step-label {
-  color: #2BA66D;
+.step-title {
+  font-size: 0.85rem;
+  color: #2c3e50;
+  margin-top: 0.4rem;
   font-weight: 600;
-}
-
-.progress-line {
-  flex: 1;
-  height: 2px;
-  background: #e9ecef;
-  margin: 0 1rem;
-  margin-bottom: 20px;
-  transition: background 0.3s ease;
-}
-
-.progress-line.active {
-  background: #2BA66D;
+  text-align: left;
 }
 
 /* Main Content Area */
